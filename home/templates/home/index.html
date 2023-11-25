@@ -1,0 +1,132 @@
+{% extends 'home/base.html' %}
+{% block content %}
+
+
+{% load static %}
+<!--slider-->
+<section id="home" class="p-0  single-slide">
+    <h2 class="d-none">hidden</h2>
+    <!-- particles.js container -->
+    <div id="particles-js"></div>
+    <div class="part-header parallax parallax-slow"></div>
+    <div class="overlay overlay-dark opacity-8 z-index-n1"></div>
+    <!-- particles.js container -->
+    <div id="particles-text-morph">
+        <h2 class="font-xlight">We Design, Build and Implement Solutions</h2>
+        <h1 id="morph-text" class="pb-2">Microsoft365, Cloud Solutions Providers, Managed Services Provider, Network Monitoring, Remote Monitoring Management, and much more... </h1>
+        <h3 class="font-light2">Our Experts are ready 24/7 - FSIT</h3>
+    </div>
+    <!--scroll down-->
+    <a href="#our-feature" class="scroll-down pagescroll hover-default">Scroll Down <i class="fas fa-long-arrow-alt-down"></i></a>
+</section>
+<!--slider end-->
+<!--Some Feature -->
+<section id="our-feature" class="single-feature padding">
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="col-lg-6 col-md-7 col-sm-7 text-sm-left text-center wow fadeInLeft" data-wow-delay="300ms">
+                <div class="heading-title mb-4">
+                    <h2 class="darkcolor font-normal bottom30">Let's take your <span class="defaultcolor">Business</span> to the Next Level</h2>
+                </div>
+                <p class="bottom35">{{ businesstonext.text | safe }}</p>
+                <a href="{% url 'services' %}" class="button btnsecondary gradient-btn">Learn More</a>
+            </div>
+            <div class="col-lg-5 offset-lg-1 col-md-5 col-sm-5 wow fadeInRight" data-wow-delay="300ms">
+                <div class="image"><img alt="Manage Service Provider" src="{% static 'images/business.png' %}"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Some Feature ends-->
+<!-- WOrk Process-->
+<section id="our-process" class="padding bgdark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 text-center">
+                <div class="heading-title whitecolor wow fadeInUp" data-wow-delay="300ms">
+                    <span>6 Simple Steps</span>
+                    <h2 class="font-normal">Our Work Process </h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <ul class="process-wrapp">
+                <li class="whitecolor wow fadeIn" data-wow-delay="300ms">
+                    <span class="pro-step bottom20">01</span>
+                    <p class="fontbold bottom25">{{ concept.title }}</p>
+                    <p class="mt-n2 mt-sm-0">{{ concept.text }}</p>
+                </li>
+                <li class="whitecolor wow fadeIn" data-wow-delay="400ms">
+                    <span class="pro-step bottom20">02</span>
+                    <p class="fontbold bottom25">{{ plan.title }}</p>
+                    <p class="mt-n2 mt-sm-0">{{ plan.text }}</p>
+                </li>
+                <li class="whitecolor wow fadeIn" data-wow-delay="500ms">
+                    <span class="pro-step bottom20">03</span>
+                    <p class="fontbold bottom25">{{ design.title }}</p>
+                    <p class="mt-n2 mt-sm-0">{{ design.text }}</p>
+                </li>
+                <li class="whitecolor wow fadeIn" data-wow-delay="600ms">
+                    <span class="pro-step bottom20">04</span>
+                    <p class="fontbold bottom25">{{ build.title }}</p>
+                    <p class="mt-n2 mt-sm-0">{{ build.text }}</p>
+                </li>
+                <li class="whitecolor wow fadeIn" data-wow-delay="700ms">
+                    <span class="pro-step bottom20">05</span>
+                    <p class="fontbold bottom25">{{ qualityassurance.title }}</p>
+                    <p class="mt-n2 mt-sm-0">{{ qualityassurance.text }}</p>
+                </li>
+                <li class="whitecolor wow fadeIn" data-wow-delay="800ms">
+                    <span class="pro-step bottom20">06</span>
+                    <p class="fontbold bottom25">{{ delivery.title }}</p>
+                    <p class="mt-n2 mt-sm-0">{{ delivery.text }}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Partners-->
+<section id="our-partners" class="padding bglight">
+    <div class="container">
+        <div class="row">
+            <h2 class="d-none">Partners Carousel</h2>
+            <div class="col-md-12 col-sm-12">
+                <div id="partners-slider" class="owl-carousel">
+                    <div class="item">
+                        <div class="logo-item"> <img alt="" src="{% static 'images/azure.png' %}"></div>
+                    </div>
+                    <div class="item">
+                        <div class="logo-item"><img alt="" src="{% static 'images/aws.png' %}"></div>
+                    </div>
+                    <div class="item">
+                        <div class="logo-item"><img alt="" src="{% static 'images/google-cloud.png' %}"></div>
+                    </div>
+                    <div class="item">
+                        <div class="logo-item"><img alt="" src="{% static 'images/Microsoft.png' %}"></div>
+                    </div>
+                    <div class="item">
+                        <div class="logo-item"><img alt="" src="{% static 'images/office365-logo.png' %}"></div>
+                    </div>
+                    <div class="item">
+                        <div class="logo-item"><img alt="" src="{% static 'images/vmware.png' %}"></div>
+                    </div>
+                    <div class="item">
+                        <div class="logo-item"><img alt="" src="{% static 'images/kubernetes.png' %}"></div>
+                    </div>
+                    <div class="item">
+                        <div class="logo-item"><img alt="" src="{% static 'images/cisco.png' %}"></div>
+                    </div>
+                    <div class="item">
+                        <div class="logo-item"><img alt="" src="{% static 'images/ciscomeraki.png' %}"></div>
+                    </div>
+                    <div class="item">
+                        <div class="logo-item"><img alt="" src="{% static 'images/docker-logo.png' %}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Partners ends-->
+{% endblock %}
