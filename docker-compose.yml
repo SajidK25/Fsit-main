@@ -1,66 +1,45 @@
-version: '3'
+version: "3"
 
 services:
-  django-app:
+  db:
+    image: postgres:15
+    container_name: fsit-db
+    environment:
+      - POSTGRES_DB=fsitdb
+      - POSTGRES_USER=fsit
+      - POSTGRES_PASSWORD=xrbp1qu7gs3s6r54
+      - POSTGRES_HOST=127.0.0.1
+    volumes:
+      - ./data/postgres/data:/var/lib/postgresql/data
+
+  nginx:
+    image: "nginx"
+    container_name: fsit-nginx
+    restart: always
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - ./static:/static
+      - ./mediafiles:/media
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+
+  web:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: django-app
-    restart: unless-stopped
-    volumes: 
-      - media_volume:/home/app/mediafiles
-      - /root/Fsit-main/home/templates/home:/usr/app/home/templates/home
-    networks:
-      - app-network
-
-  webserver:
-    image: nginx:mainline-alpine
-    container_name: webserver
-    restart: unless-stopped
+      network: host
+    container_name: fsit-web
+    restart: on-failure
+    volumes:
+      - .:/code
+    command: bash -c "python manage.py makemigrations home --noinput && 
+                      python manage.py migrate --noinput && 
+                      python manage.py initadmin && 
+                      python manage.py collectstatic --no-input && 
+                      gunicorn fsit.wsgi:application --bind 0.0.0.0:8000 --timeout 120 -k gevent --workers 4"
     ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - web-root:/var/www/html
-      - ./nginx-conf:/etc/nginx/conf.d
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-      - dhparam:/etc/ssl/certs
-      - media_volume:/home/app/mediafiles
+      - "8000:8000"
     depends_on:
-      - django-app
-    networks:
-      - app-network
-
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-      - web-root:/var/www/html
-      - dhparam:/etc/ssl/certs
-    depends_on:
-      - webserver
-    command: certonly -n --webroot --webroot-path=/var/www/html --email digitalocean@fsitservices.com --agree-tos --no-eff-email -d fsitservices.com  -d www.fsitservices.com
-
-volumes:
-  certbot-etc:
-  certbot-var:
-  media_volume:
-  web-root:
-    driver: local
-    driver_opts:
-      type: none
-      device: /root/Fsit-main/www
-      o: bind
-  dhparam:
-    driver: local
-    driver_opts:
-      type: none
-      device: /root/Fsit-main/dhparam/
-      o: bind
-
-networks:
-  app-network:
-    driver: bridge
+      - db

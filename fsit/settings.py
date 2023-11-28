@@ -26,8 +26,13 @@ SECRET_KEY = '8*w6(38ae+lbkdgr4tr@1byn7uim=wxl*wah9q5n3b8n!kv$2!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-app','67.205.158.29', 'www.fsitservices.com', 'fsitservices.com','127.0.0.1']
+# ALLOWED_HOSTS = ['django-app','67.205.158.29', 'www.fsitservices.com', 'fsitservices.com','127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
+ADMINS = (
+    # ('Your Name', 'your_email@domain.com'),
+    ('franck', 'sajidkhan.tech99@gmail.com')
+)
 
 # Application definition
 
@@ -78,19 +83,30 @@ WSGI_APPLICATION = 'fsit.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'defaultdb',
-        'USER': 'doadmin',
+        'NAME': 'fsitdb',
+        'USER': 'fsit',
         'PASSWORD': 'xrbp1qu7gs3s6r54',
-        'HOST': 'fsit-service-do-user-8035914-0.b.db.ondigitalocean.com',
-        'PORT': '25060',
+        'HOST': 'db',
+        'PORT': '5432',
 
-    }
-    pg_dump -U doadmin -h fsit-service-do-user-8035914-0.b.db.ondigitalocean.com -p remote_port
-    #   'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
 }
+}
+
+# DATABASES = {
+#      'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'defaultdb',
+#         'USER': 'doadmin',
+#         'PASSWORD': 'xrbp1qu7gs3s6r54',
+#         'HOST': 'fsit-service-do-user-8035914-0.b.db.ondigitalocean.com',
+#         'PORT': '25060',
+
+#     }
+#     #   'default': {
+#     #     'ENGINE': 'django.db.backends.sqlite3',
+#     #     'NAME': BASE_DIR / 'db.sqlite3',
+#     # }
+# }
 
 
 # Password validation
@@ -141,6 +157,9 @@ DEFAULT_FROM_EMAIL = 'aqdaszulfiqar30@gmail.com'  # Replace with your default "f
 
 STATIC_URL = '/static/'
 # MEDIA_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = "/mediafiles/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
+# MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
+STATICFILES_DIRS = ( 
+     os.path.join(BASE_DIR, 'static'),os.path.join(BASE_DIR, 'mediafiles'),
+)
