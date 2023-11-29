@@ -5,6 +5,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV app_port 8000
 
-COPY . /code/
 WORKDIR /code
+COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
+COPY . .

@@ -1,29 +1,89 @@
 version: "3"
 
+networks:
+  traefik-net:
+    driver: overlay
+    external: true 
+  
 services:
+  traefik:
+    labels:
+      traefik.docker.network: "traefik-net"
+      traefik.enable: "true"
+      traefik.http.routers.traefik.entrypoints: "https"
+      traefik.http.routers.traefik.middlewares: "traefikAuth@file,default@file"
+      traefik.http.routers.traefik.rule: "Host(`${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}`)" # [Attention]
+      traefik.http.routers.traefik.service: "api@internal"
+      traefik.http.routers.traefik.tls.certresolver: "letsEncrypt"
+      traefik.http.routers.traefik.tls.options: "modern@file"
+      traefik.http.routers.traefik.tls: "true"
+      traefik.http.services.traefik.loadbalancer.server.port: 8080
+      traefik.http.services.traefik.loadbalancer.sticky.cookie.httpOnly: "true"
+      traefik.http.services.traefik.loadbalancer.sticky.cookie.secure: "true"
+      # Schedule Traefik on the Swarm manager nodes, as the Swarm API is only exposed on the manager nodes
+      # See https://docs.traefik.io/providers/docker/#docker-api-access_1
+    # Published on https://hub.docker.com/_/traefik?tab=tags
+    image: traefik:v2.10                                                     # See https://github.com/containous/traefik/releases
+    networks:
+      - traefik-net
+    ports:
+      - 80:80
+      - 443:443
+      # To be able to listen on port 80 (http)
+      # - mode: host
+      #   published: 80
+      #   target: 80
+      # # To be able to listen on port 443 (https)
+      # - mode: host
+      #   published: 443
+      #   target: 443
+    volumes:
+      - ./traefik/localtime:/etc/localtime:ro                                        # Set the container timezone by sharing the read-only localtime
+      - ./traefik/config/dynamic_config.yml:/etc/traefik/config.yml:ro            # Set the dynamic configuration for the file provider
+      - ./traefik/config/traefik.yml:/etc/traefik/traefik.yml:ro          # Set the static configuration
+      - ./traefik/cert:/etc/traefik/acme                                      # Set the location where my ACME certificates are saved to
+      - /var/run/docker.sock:/var/run/docker.sock:ro                            # Give access to the UNIX Docker socket
+
   db:
     image: postgres:15
     container_name: fsit-db
     environment:
-      - POSTGRES_DB=fsitdb
-      - POSTGRES_USER=fsit
-      - POSTGRES_PASSWORD=xrbp1qu7gs3s6r54
-      - POSTGRES_HOST=127.0.0.1
+      - POSTGRES_DB=${PG_DATABASE}
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_HOST=${PG_HOST}
     volumes:
-      - ./data/postgres/data:/var/lib/postgresql/data
+      - ./data/postgres/:/var/lib/postgresql/data
+    networks:
+      - default
 
   nginx:
     image: "nginx"
     container_name: fsit-nginx
+    labels:
+      traefik.docker.network: "traefik-net"
+      traefik.enable: "true"
+      traefik.http.routers.nginx.entrypoints: "https"
+      traefik.http.routers.nginx.middlewares: "default@file"
+      traefik.http.routers.nginx.rule: "Host(`${PROJECT_SUBDOMAIN}.${PROJECT_DOMAIN}`)"
+      traefik.http.routers.nginx.tls.certresolver: "letsEncrypt"
+      traefik.http.routers.nginx.tls.options: "modern@file"
+      traefik.http.routers.nginx.tls: "true"
+      traefik.http.services.nginx.loadbalancer.server.port: 80
+      traefik.http.services.nginx.loadbalancer.sticky.cookie.httpOnly: "true"
+      traefik.http.services.nginx.loadbalancer.sticky.cookie.secure: "true"
     restart: always
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
-      - ./static:/static
-      - ./mediafiles:/media
-    ports:
-      - "80:80"
+      - ./static:/code/static
+      - ./mediafiles:/code/mediafiles
+    # ports:
+    #   - "80:80"
     depends_on:
       - web
+    networks:
+      - traefik-net
+      - default
 
   web:
     build:
@@ -34,12 +94,12 @@ services:
     restart: on-failure
     volumes:
       - .:/code
-    command: bash -c "python manage.py makemigrations home --noinput && 
-                      python manage.py migrate --noinput && 
-                      python manage.py initadmin && 
+    command: bash -c "python manage.py initadmin && 
                       python manage.py collectstatic --no-input && 
                       gunicorn fsit.wsgi:application --bind 0.0.0.0:8000 --timeout 120 -k gevent --workers 4"
     ports:
       - "8000:8000"
     depends_on:
       - db
+    networks:
+      - default

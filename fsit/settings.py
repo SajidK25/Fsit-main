@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '8*w6(38ae+lbkdgr4tr@1byn7uim=wxl*wah9q5n3b8n!kv$2!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['django-app','67.205.158.29', 'www.fsitservices.com', 'fsitservices.com','127.0.0.1']
 ALLOWED_HOSTS = ['*']
@@ -83,13 +83,12 @@ WSGI_APPLICATION = 'fsit.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fsitdb',
-        'USER': 'fsit',
+        'NAME': 'defaultdb',
+        'USER': 'doadmin',
         'PASSWORD': 'xrbp1qu7gs3s6r54',
         'HOST': 'db',
         'PORT': '5432',
-
-}
+    }
 }
 
 # DATABASES = {
@@ -102,11 +101,12 @@ DATABASES = {
 #         'PORT': '25060',
 
 #     }
+# }
 #     #   'default': {
 #     #     'ENGINE': 'django.db.backends.sqlite3',
 #     #     'NAME': BASE_DIR / 'db.sqlite3',
 #     # }
-# }
+
 
 
 # Password validation
@@ -155,11 +155,19 @@ DEFAULT_FROM_EMAIL = 'aqdaszulfiqar30@gmail.com'  # Replace with your default "f
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-# MEDIA_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_URL = "/mediafiles/"
+# STATIC_URL = '/static/'
+# # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# MEDIA_URL = "/mediafiles/"
 # MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
-STATICFILES_DIRS = ( 
-     os.path.join(BASE_DIR, 'static'),os.path.join(BASE_DIR, 'mediafiles'),
-)
+# STATICFILES_DIRS = ( 
+#      os.path.join(BASE_DIR, 'static'),os.path.join(BASE_DIR, 'mediafiles'),
+# )
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_URL = "/mediafiles/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "staticfiles")
+]
