@@ -1,13 +1,12 @@
-name: CI/CD for fsitsevice.com
+name: CI/CD for fsitsevice.com 
 
 on:
   push:
     branches:
-      - main
+      - master
       - dev
 
 env:
-  IMAGE_NAME: mezbauddin.com
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   SERVER_HOST: ${{ secrets.VPS_IP_ADRESS }}
@@ -32,10 +31,21 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
       - name: Build Docker Image and Push
         run: |
-            docker compose -f docker-compose.dev.yml build
-            docker compose -f docker-compose.dev.yml push
+            if [[ "refs/heads/master" == "refs/heads/master" ]]; then
+                COMPOSE_FILE=docker-compose.yml
+            else
+                COMPOSE_FILE=docker-compose.dev.yml
+            fi        
+            echo "Using Docker Compose file: $COMPOSE_FILE" && \
+                docker compose -f $COMPOSE_FILE build
+                docker compose -f $COMPOSE_FILE push
 
       - name: Login to Server/VPS/VM/Drolet
         uses: appleboy/ssh-action@master
@@ -44,20 +54,16 @@ jobs:
             username: ${{ secrets.SSH_USERNAME }}
             password: ${{ secrets.SSH_PASSWORD }}
 
-      - name: Extract branch name
-        shell: bash
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-        id: extract_branch
-        
+
       - name: Deploy to Digital ocean droplet.
         run: |
           git stash
           git pull origin ${{ steps.extract_branch.outputs.branch }}
 
-          if [[ "refs/heads/dev" == "refs/heads/dev" ]]; then
-            COMPOSE_FILE=docker-compose.dev.yml
-          else
+          if [[ "refs/heads/master" == "refs/heads/master" ]]; then
             COMPOSE_FILE=docker-compose.yml
+          else
+            COMPOSE_FILE=docker-compose.dev.yml
           fi        
           echo "Using Docker Compose file: $COMPOSE_FILE" && \
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin

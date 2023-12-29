@@ -93,6 +93,7 @@ services:
       dockerfile: Dockerfile
       network: host
     container_name: fsit-web
+    image: tech99/fsit-web-prod
     restart: on-failure
     volumes:
       - .:/code
