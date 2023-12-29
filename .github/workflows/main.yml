@@ -47,7 +47,9 @@ jobs:
       - name: Deploy to Digital ocean droplet.
         run: |
         
-          # echo "$DOCKER_PASSWORD" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin && \
+          cd $(pwd)/Fsit-main
+          git stash
+          git pull 
 
           if [[ "refs/heads/dev" == "refs/heads/dev" ]]; then
             COMPOSE_FILE=docker-compose.dev.yml
