@@ -61,7 +61,7 @@ jobs:
           git pull origin ${{ steps.extract_branch.outputs.branch }}
 
           if [[ "refs/heads/dev" == "refs/heads/dev" ]]; then
-            COMPOSE_FILE=docker-compose.dev .yml
+            COMPOSE_FILE=docker-compose.dev.yml
           else
             COMPOSE_FILE=docker-compose.yml
           fi        
