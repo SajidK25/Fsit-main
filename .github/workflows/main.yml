@@ -38,10 +38,10 @@ jobs:
 
       - name: Build Docker Image and Push
         run: |
-            if [[ "refs/heads/master" == "refs/heads/master" ]]; then
-                COMPOSE_FILE=docker-compose.yml
-            else
+            if [[ "refs/heads/dev" == "refs/heads/dev" ]]; then
                 COMPOSE_FILE=docker-compose.dev.yml
+            else
+                COMPOSE_FILE=docker-compose.yml
             fi        
             echo "Using Docker Compose file: $COMPOSE_FILE" && \
                 docker compose -f $COMPOSE_FILE build
@@ -60,10 +60,10 @@ jobs:
           git stash
           git pull origin ${{ steps.extract_branch.outputs.branch }}
 
-          if [[ "refs/heads/master" == "refs/heads/master" ]]; then
-            COMPOSE_FILE=docker-compose.yml
+          if [[ "refs/heads/dev" == "refs/heads/dev" ]]; then
+            COMPOSE_FILE=docker-compose.dev .yml
           else
-            COMPOSE_FILE=docker-compose.dev.yml
+            COMPOSE_FILE=docker-compose.yml
           fi        
           echo "Using Docker Compose file: $COMPOSE_FILE" && \
           echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
