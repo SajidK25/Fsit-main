@@ -46,8 +46,6 @@ jobs:
 
       - name: Deploy to Digital ocean droplet.
         run: |
-        
-          cd $(pwd)/Fsit-main
           git stash
           git pull 
 
