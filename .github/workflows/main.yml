@@ -44,10 +44,15 @@ jobs:
             username: ${{ secrets.SSH_USERNAME }}
             password: ${{ secrets.SSH_PASSWORD }}
 
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+        
       - name: Deploy to Digital ocean droplet.
         run: |
           git stash
-          git pull 
+          git pull origin ${{ steps.extract_branch.outputs.branch }}
 
           if [[ "refs/heads/dev" == "refs/heads/dev" ]]; then
             COMPOSE_FILE=docker-compose.dev.yml
