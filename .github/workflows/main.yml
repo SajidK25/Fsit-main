@@ -1,4 +1,4 @@
-name: CI/CD for mezbauddin.com
+name: CI/CD for fsitsevice.com
 
 on:
   push:
