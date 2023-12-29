@@ -22,7 +22,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            echo "${DOCKER_PASSWORD}" | docker login -u tech99 --password-stdin
+            echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
             docker compose -f docker-compose.dev.yml build
             docker compose -f docker-compose.dev.yml push
 
@@ -40,7 +40,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            echo "${DOCKER_PASSWORD}" | docker login -u tech99 --password-stdin
+            echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
             docker compose down -v
             docker compose -f docker-compose.dev.yml up -d
 
