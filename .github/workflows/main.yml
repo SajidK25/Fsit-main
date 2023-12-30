@@ -14,7 +14,7 @@ env:
   SERVER_PASSWORD: ${{ secrets.SSH_PASSWORD }}
 #   TFE_TOKEN: ${{ secrets.TF_CLOUD_TOKEN }}
 #   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-#   TARGET_DOMAIN: ${{ secrets.TARGET_DOMAIN }}
+  TARGET_DOMAIN: ${{ secrets.TARGET_DOMAIN }}
 
 
 jobs:
