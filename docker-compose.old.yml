@@ -1,0 +1,66 @@
+version: '3'
+
+services:
+  django-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: django-app
+    restart: unless-stopped
+    volumes: 
+      - media_volume:/home/app/mediafiles
+      - /root/Fsit-main/home/templates/home:/usr/app/home/templates/home
+    networks:
+      - app-network
+
+  webserver:
+    image: nginx:mainline-alpine
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - web-root:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - dhparam:/etc/ssl/certs
+      - media_volume:/home/app/mediafiles
+    depends_on:
+      - django-app
+    networks:
+      - app-network
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - web-root:/var/www/html
+      - dhparam:/etc/ssl/certs
+    depends_on:
+      - webserver
+    command: certonly -n --webroot --webroot-path=/var/www/html --email digitalocean@fsitservices.com --agree-tos --no-eff-email -d fsitservices.com  -d www.fsitservices.com
+
+volumes:
+  certbot-etc:
+  certbot-var:
+  media_volume:
+  web-root:
+    driver: local
+    driver_opts:
+      type: none
+      device: /root/Fsit-main/www
+      o: bind
+  dhparam:
+    driver: local
+    driver_opts:
+      type: none
+      device: /root/Fsit-main/dhparam/
+      o: bind
+
+networks:
+  app-network:
+    driver: bridge
