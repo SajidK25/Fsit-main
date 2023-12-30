@@ -38,7 +38,7 @@ jobs:
 
       - name: Build Docker Image and Push
         run: |
-            if [[ "refs/heads/dev" == "refs/heads/dev" ]]; then
+            if [[ "${{ steps.extract_branch.outputs.branch }}" == "dev" ]]; then
                 COMPOSE_FILE=docker-compose.dev.yml
             else
                 COMPOSE_FILE=docker-compose.yml
@@ -60,7 +60,7 @@ jobs:
           git stash
           git pull origin ${{ steps.extract_branch.outputs.branch }}
 
-          if [[ "refs/heads/dev" == "refs/heads/dev" ]]; then
+          if [[ "${{ steps.extract_branch.outputs.branch }}" == "dev" ]]; then
             COMPOSE_FILE=docker-compose.dev.yml
           else
             COMPOSE_FILE=docker-compose.yml
