@@ -81,6 +81,7 @@ jobs:
             fi        
             echo "Using Docker Compose file: $COMPOSE_FILE" && \
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-            docker-compose -f $COMPOSE_FILE down || true && \
+            docker-compose -f $COMPOSE_FILE stop || true && \
+            docker-compose -f $COMPOSE_FILE rm web-dev -f || true && \
             docker-compose -f $COMPOSE_FILE pull && \
             docker-compose -f $COMPOSE_FILE up -d
