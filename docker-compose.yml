@@ -44,20 +44,20 @@ services:
       - ./traefik/cert:/etc/traefik/acme                                      # Set the location where my ACME certificates are saved to
       - /var/run/docker.sock:/var/run/docker.sock:ro                            # Give access to the UNIX Docker socket
 
-  db:
-    image: postgres:15
-    container_name: fsit-db
-    environment:
-      - POSTGRES_DB=${PG_DATABASE}
-      - POSTGRES_USER=${PG_USER}
-      - POSTGRES_PASSWORD=${PG_PASSWORD}
-      - POSTGRES_HOST=${PG_HOST}
-    ports:
-      - 5432:5432
-    volumes:
-      - ./data/postgres/:/var/lib/postgresql/data
-    networks:
-      - default
+  # db:
+  #   image: postgres:15
+  #   container_name: fsit-db
+  #   environment:
+  #     - POSTGRES_DB=${PG_DATABASE}
+  #     - POSTGRES_USER=${PG_USER}
+  #     - POSTGRES_PASSWORD=${PG_PASSWORD}
+  #     - POSTGRES_HOST=${PG_HOST}
+  #   ports:
+  #     - 5432:5432
+  #   volumes:
+  #     - ./data/postgres/:/var/lib/postgresql/data
+  #   networks:
+  #     - default
 
   nginx:
     image: "nginx"
@@ -97,8 +97,7 @@ services:
     restart: on-failure
     volumes:
       - .:/code
-    command: bash -c "python manage.py initadmin && 
-                      python manage.py collectstatic --no-input && 
+    command: bash -c "python manage.py collectstatic --no-input && 
                       gunicorn fsit.wsgi:application --bind 0.0.0.0:8000 --timeout 120 -k gevent --workers 4"
     ports:
       - "8000:8000"
