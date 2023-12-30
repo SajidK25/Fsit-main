@@ -101,7 +101,7 @@ services:
                       gunicorn fsit.wsgi:application --bind 0.0.0.0:8000 --timeout 120 -k gevent --workers 4"
     ports:
       - "8000:8000"
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     networks:
       - default
