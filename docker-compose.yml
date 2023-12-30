@@ -86,10 +86,10 @@ services:
       # - default
 
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      network: host
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    #   network: host
     container_name: fsit-web
     image: tech99/fsit-web-prod
     restart: on-failure
