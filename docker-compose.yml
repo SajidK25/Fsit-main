@@ -93,8 +93,8 @@ services:
     container_name: fsit-web
     image: tech99/fsit-web-dev
     restart: on-failure
-    volumes:
-      - .:/code
+    # volumes:
+    #   - .:/code
     command: bash -c "python manage.py collectstatic --no-input && 
                       gunicorn fsit.wsgi:application --bind 0.0.0.0:8000 --timeout 120 -k gevent --workers 4"
     ports:
