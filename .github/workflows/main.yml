@@ -71,16 +71,16 @@ jobs:
 
       - name: Deploy to Digital ocean droplet.
         run: |
-          git stash
-          git pull origin ${{ steps.extract_branch.outputs.branch }}
+            #   git stash
+            #   git pull origin ${{ steps.extract_branch.outputs.branch }}
 
-          if [[ "${{ steps.extract_branch.outputs.branch }}" == "dev" ]]; then
-            COMPOSE_FILE=docker-compose.dev.yml
-          else
-            COMPOSE_FILE=docker-compose.yml
-          fi        
-          echo "Using Docker Compose file: $COMPOSE_FILE" && \
-          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-          docker-compose -f $COMPOSE_FILE down || true && \
-          docker-compose -f $COMPOSE_FILE pull && \
-          docker-compose -f $COMPOSE_FILE up -d
+            if [[ "${{ steps.extract_branch.outputs.branch }}" == "dev" ]]; then
+                COMPOSE_FILE=docker-compose.dev.yml
+            else
+                COMPOSE_FILE=docker-compose.yml
+            fi        
+            echo "Using Docker Compose file: $COMPOSE_FILE" && \
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+            docker-compose -f $COMPOSE_FILE down || true && \
+            docker-compose -f $COMPOSE_FILE pull && \
+            docker-compose -f $COMPOSE_FILE up -d
