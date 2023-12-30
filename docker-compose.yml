@@ -2,8 +2,8 @@ version: "3"
 
 networks:
   traefik-net:
-    driver: overlay
-    external: true 
+    # driver: overlay
+    # external: true 
   
 services:
   traefik:
@@ -83,7 +83,7 @@ services:
       - web
     networks:
       - traefik-net
-      - default
+      # - default
 
   web:
     build:
@@ -100,4 +100,4 @@ services:
     ports:
       - "8000:8000"
     networks:
-      - default
+      - traefik-net
