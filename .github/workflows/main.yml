@@ -66,14 +66,17 @@ jobs:
         with:
             host: ${{ secrets.VPS_IP_ADRESS }}
             username: ${{ secrets.SSH_USERNAME }}
-            password: ${{ secrets.SSH_PASSWORD }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            port: ${{ secrets.SSH_PORT }}
+            # password: ${{ secrets.SSH_PASSWORD }}
+            script: |
+                whoami
+                ls -al
+
             
 
       - name: Deploy to Digital ocean droplet.
         run: |
-            #   git stash
-            #   git pull origin ${{ steps.extract_branch.outputs.branch }}
-            ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.VPS_IP_ADRESS }} << 'ENDSSH'
             if [[ "${{ steps.extract_branch.outputs.branch }}" == "dev" ]]; then
                 COMPOSE_FILE=docker-compose.dev.yml
             else
@@ -84,4 +87,3 @@ jobs:
             docker compose -f $COMPOSE_FILE down --rmi all || true && \
             docker compose -f $COMPOSE_FILE pull && \
             docker compose -f $COMPOSE_FILE up -d
-            ENDSSH
