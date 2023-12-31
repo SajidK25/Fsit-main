@@ -2,15 +2,9 @@ version: "3"
   
 services:
   web-dev:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      network: host
     container_name: fsit-web-dev
     image: tech99/fsit-web-dev
     restart: on-failure
-    volumes:
-      - .:/code
     command: bash -c "python manage.py runserver 0.0.0.0:8000 --settings=fsit.settings_local"
     ports:
       - "8888:8000"
