@@ -242,7 +242,7 @@ class Clients(models.Model):
     #def __str__(self):
         #return self.title
 
-class Blog(models.Model):
+class Blogs(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     image = models.FileField(upload_to='images/', blank=True, null=True)
     title = models.CharField(max_length=200, help_text='Title')

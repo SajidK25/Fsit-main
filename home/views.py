@@ -7,7 +7,7 @@ from home.models import BusinessToNext, About, Concept, NeedHelp, Plan, Design, 
 #from .models import Blog
 #from django.core.mail import send_mail
 #from django.http import JsonResponse
-#from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
 #import json
 from django.contrib import messages
 from django.shortcuts import redirect
