@@ -13,7 +13,6 @@ admin.site.register(Delivery)
 admin.site.register(About)
 admin.site.register(Services)
 admin.site.register(NeedHelp)
-admin.site.register(Clients)
 admin.site.register(Blogs)
 
 
