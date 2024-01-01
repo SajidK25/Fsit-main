@@ -9,5 +9,5 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('team', views.team, name='team'),
     path('services/<int:pk>', views.servicesdetail, name='servicesdetail'),
-    #path('blogs/<int:blog_id>/', views.blogsdetail, name='blogsdetail'),
+    path('blogs/<int:blog_id>/', views.blogsdetail, name='blogsdetail'),
 ]

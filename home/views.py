@@ -77,3 +77,11 @@ def contact(request):
 
 def team(request):
     return render(request, 'home/team.html')
+
+def blogs(request):
+    blogs = Blogs.objects.all()
+    context = {
+        'blogs': blogs,
+    }
+    print(context)
+    return render(request, 'home/blogs.html', context=context)
