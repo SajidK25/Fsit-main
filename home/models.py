@@ -227,20 +227,20 @@ class Clients(models.Model):
         return url
 
 #class BlogPost(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    pub_date = models.DateTimeField('date published')
+    #title = models.CharField(max_length=200)
+    #content = models.TextField()
+    #pub_date = models.DateTimeField('date published')
 
-    def __str__(self):
-        return self.title
+    #def __str__(self):
+        #return self.title
 #class Blog(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    author = models.CharField(max_length=100)
-    pub_date = models.DateField()
+    #title = models.CharField(max_length=200)
+    #content = models.TextField()
+    #author = models.CharField(max_length=100)
+    #pub_date = models.DateField()
 
-    def __str__(self):
-        return self.title
+    #def __str__(self):
+        #return self.title
 
 class Blog(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)

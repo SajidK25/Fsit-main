@@ -2,16 +2,16 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
-from home.models import BusinessToNext, About, Concept, NeedHelp, Plan, Design, Build, QualityAssurance, Delivery, Careers, Services, Servicesdetail, Clients
-from .models import BlogPost
-from .models import Blog
-from django.core.mail import send_mail
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import json
+from home.models import BusinessToNext, About, Concept, NeedHelp, Plan, Design, Build, QualityAssurance, Delivery, Careers, Services, Servicesdetail, Clients, Blogs, Blogsdetail
+#from .models import BlogPost
+#from .models import Blog
+#from django.core.mail import send_mail
+#from django.http import JsonResponse
+#from django.views.decorators.csrf import csrf_exempt
+#import json
 from django.contrib import messages
 from django.shortcuts import redirect
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+#from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def page_not_found(request):
