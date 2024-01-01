@@ -202,45 +202,6 @@ class NeedHelp(models.Model):
     
     def __str__(self):
         return str(self.phoneNumber)
-        
-        
-class Clients(models.Model):
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    image = models.FileField(upload_to='images/', blank=True, null=True)
-    title = models.CharField(max_length=200, help_text='Title', default='title')
-    createDate = models.DateTimeField(default=timezone.now())
-    publishedDate = models.DateTimeField(default=timezone.now())
-
-    def publish(self):
-        self.publishedDate = timezone.now()
-        self.save()
-
-    def __str__(self):
-        return str(self.title)
-    
-    @property
-    def imageURL(self):
-        try:
-            url = self.image.url
-        except:
-            url = ''
-        return url
-
-#class BlogPost(models.Model):
-    #title = models.CharField(max_length=200)
-    #content = models.TextField()
-    #pub_date = models.DateTimeField('date published')
-
-    #def __str__(self):
-        #return self.title
-#class Blog(models.Model):
-    #title = models.CharField(max_length=200)
-    #content = models.TextField()
-    #author = models.CharField(max_length=100)
-    #pub_date = models.DateField()
-
-    #def __str__(self):
-        #return self.title
 
 class Blogs(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)

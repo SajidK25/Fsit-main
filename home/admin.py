@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from home.models import BusinessToNext, Concept, NeedHelp, Plan, Design, Build, QualityAssurance,Delivery, About, Services, Clients,Blogs
+from home.models import BusinessToNext, Concept, NeedHelp, Plan, Design, Build, QualityAssurance,Delivery, About, Services,Blogs
 
 admin.site.register(BusinessToNext)
 admin.site.register(Concept)
