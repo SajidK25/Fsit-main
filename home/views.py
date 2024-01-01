@@ -41,12 +41,12 @@ def index(request):
     }
     return render(request, 'home/index.html', context=context)
 
-# def populate_data():
-#     BlogPost.objects.create(
-#         title='First Blog Post',
-#         content='This is the content of the first blog post.',
-#         pub_date=timezone.now()
-#     )
+def populate_data():
+    BlogPost.objects.create(
+        title='First Blog Post',
+        content='This is the content of the first blog post.',
+        pub_date=timezone.now()
+    )
 
 
 def about(request):
@@ -57,14 +57,14 @@ def about(request):
         'about': about,
     }
     return render(request, 'home/about.html', context=context)
-# def blog_detail_view(request):
-#     # Retrieve all blog posts
-#     blog_posts = BlogPost.objects.all()
+def blog_detail_view(request):
+     # Retrieve all blog posts
+     blog_posts = BlogPost.objects.all()
 
-#     context = {
-#         'blog_posts': blog_posts,
-#     }
-#     return render(request, 'fsit/blog_detail.html', context)
+     context = {
+         'blog_posts': blog_posts,
+     }
+     return render(request, 'fsit/blogsdetail.html', context)
 
 def services(request):
     services = Services.objects.all()
@@ -128,7 +128,7 @@ def blog_list(request):
 
 def blog_detail(request, blog_id):
     blog = get_object_or_404(Blog, pk=blog_id)
-    return render(request, 'home/blog-detail.html', {'blog': blog})
+    return render(request, 'home/blogsdetail.html', {'blog': blog})
 @csrf_exempt
 def subscribe(request):
     if request.method == 'POST':
