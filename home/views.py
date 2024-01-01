@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
-from home.models import BusinessToNext, About, Concept, NeedHelp, Plan, Design, Build, QualityAssurance, Delivery, Careers, Services, Servicesdetail, Clients, Blogs, Blogsdetail
+from home.models import BusinessToNext, About, Concept, NeedHelp, Plan, Design, Build, QualityAssurance, Delivery, Careers, Services, Servicesdetail, Blogs, Blogsdetail
 
 
 def page_not_found(request):
