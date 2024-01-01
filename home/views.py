@@ -85,3 +85,19 @@ def blogs(request):
     }
     print(context)
     return render(request, 'home/blogs.html', context=context)
+
+def blogsdetail(request, blog_id):
+    try:
+        service = Services.objects.get(blog_id = blog_id)
+        need_help = NeedHelp.objects.last()
+        context = {
+            'service': service,
+            'need_help': need_help
+        }
+        response = render(request, 'home/blogsdetail.html', context=context)
+        response.status_code = 200
+    except  Blogs.DoesNotExist:
+        response = page_not_found(request)
+    # print(context)
+    
+    return response
