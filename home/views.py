@@ -88,12 +88,7 @@ def blogs(request):
 
 def blogsdetail(request, blog_id):
     try:
-        service = Services.objects.get(blog_id = blog_id)
-        need_help = NeedHelp.objects.last()
-        context = {
-            'service': service,
-            'need_help': need_help
-        }
+        Blog = Blogs.objects.get(blog_id = blog_id)
         response = render(request, 'home/blogsdetail.html', context=context)
         response.status_code = 200
     except  Blogs.DoesNotExist:
