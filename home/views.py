@@ -67,7 +67,6 @@ def servicesdetail(request, pk):
     except  Services.DoesNotExist:
         response = page_not_found(request)
     # print(context)
-    
     return response
 
 
@@ -89,10 +88,8 @@ def blogs(request):
 def blogsdetail(request, blog_id):
     try:
         Blog = Blogs.objects.get(blog_id = blog_id)
-        response = render(request, 'home/blogsdetail.html', context=context)
+        response = render(request, 'home/blogsdetail.html')
         response.status_code = 200
     except  Blogs.DoesNotExist:
         response = page_not_found(request)
-    # print(context)
-    
     return response
