@@ -83,7 +83,7 @@ def blogs(request):
         'blogs': blogs,
     }
     print(context)
-    return render(request, 'home/blog.html', context=context)
+    return render(request, 'home/blogs.html', context=context)
 
 def blogsdetail(request, blog_id):
     try:
