@@ -25,9 +25,6 @@
                     <li class="nav-item dropdown static">
                         <a class="nav-link" href="{% url 'services' %}">Services</a>
                     </li>
-					<li class="nav-item dropdown static">
-                        <a class="nav-link" href="{% url 'clients' %}">Our Clients</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'careers' %}">Careers</a>
                     </li>
@@ -35,7 +32,7 @@
                         <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
+                        <a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
                     </li>
                 </ul>
             </div>
@@ -53,19 +50,13 @@
             <nav class="side-nav w-100">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link">
-                            Home <i class="fas fa-chevron-down"></i>
-                        </a>
-
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'careers' %}">Careers</a>
-                    </li>
-					<li class="nav-item dropdown static">
-                        <a class="nav-link" href="{% url 'clients' %}">Our Clients</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'services' %}">Services</a>
@@ -74,6 +65,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blogs' %}">Blogs</a>
                     </li>
                 </ul>
             </nav>
@@ -84,7 +78,7 @@
                     <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i> </a> </li>
                     <li><a href="https://www.linkedin.com/company/fsit-services"><i class="fab fa-linkedin-in"></i> </a> </li>
                 </ul>
-                <p class="whitecolor">&copy; <span id="year"></span> FSIT. Consulting Firm</p>
+                <p class="whitecolor">&copy; <span id="year"></span> FSIT Services LLC. Consulting Firm</p>
             </div>
         </div>
     </div>
