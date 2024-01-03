@@ -71,7 +71,7 @@ jobs:
             # password: ${{ secrets.SSH_PASSWORD }}
             script: |
                 cd Fsit-main/
-                git stash
+                # git stash
                 git pull origin "${{ steps.extract_branch.outputs.branch }}" 
                 if [[ "${{ steps.extract_branch.outputs.branch }}" == "dev" ]]; then
                     COMPOSE_FILE=docker-compose.dev.yml
