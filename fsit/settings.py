@@ -99,7 +99,6 @@ DATABASES = {
         'PASSWORD': 'xrbp1qu7gs3s6r54',
         'HOST': 'fsit-service-do-user-8035914-0.b.db.ondigitalocean.com',
         'PORT': '25060',
-
     }
 }
 #     #   'default': {
