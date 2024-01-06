@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
-    ('franck', 'sajidkhan.tech99@gmail.com')
+    ('franck', 'franck.alomassor@fsitservices.com')
 )
 
 # Application definition
@@ -80,17 +80,6 @@ WSGI_APPLICATION = 'fsit.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#      'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'defaultdb',
-#         'USER': 'doadmin',
-#         'PASSWORD': 'xrbp1qu7gs3s6r54',
-#         'HOST': 'db',
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -101,12 +90,6 @@ DATABASES = {
         'PORT': '25060',
     }
 }
-#     #   'default': {
-#     #     'ENGINE': 'django.db.backends.sqlite3',
-#     #     'NAME': BASE_DIR / 'db.sqlite3',
-#     # }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -139,28 +122,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-# settings.py
-
-# Email configuration
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'  # Replace with your SMTP server
-# EMAIL_PORT = 587  # Replace with your SMTP server's port
-# EMAIL_USE_TLS = True  # Set to True if your SMTP server requires TLS
-# EMAIL_HOST_USER = 'aqdaszulfiqar30@gmail.com'  # Replace with your email address
-# EMAIL_HOST_PASSWORD = 'thxv rloy fbnn pkaf'  # Replace with your email password
-# DEFAULT_FROM_EMAIL = 'aqdaszulfiqar30@gmail.com'  # Replace with your default "from" address
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-# STATIC_URL = '/static/'
-# # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# MEDIA_URL = "/mediafiles/"
-# MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
-# STATICFILES_DIRS = ( 
-#      os.path.join(BASE_DIR, 'static'),os.path.join(BASE_DIR, 'mediafiles'),
-# )
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
