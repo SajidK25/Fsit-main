@@ -2,8 +2,7 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
-from home.models import BusinessToNext, About, Concept, NeedHelp, Plan, Design, Build, QualityAssurance, Delivery, Careers, Services, Servicesdetail, Blogs, Blogsdetail
-
+from home.models import BusinessToNext, About, Concept, NeedHelp, Plan, Design, Build, QualityAssurance, Delivery, Careers, Services, Servicesdetail
 
 def page_not_found(request):
     response = render(request, 'home/404.html')
@@ -76,20 +75,3 @@ def contact(request):
 
 def team(request):
     return render(request, 'home/team.html')
-
-def blogs(request):
-    blogs = Blogs.objects.all()
-    context = {
-        'blogs': blogs,
-    }
-    print(context)
-    return render(request, 'home/blogs.html', context=context)
-
-def blogsdetail(request, blog_id):
-    try:
-        Blog = Blogs.objects.get(blog_id = blog_id)
-        response = render(request, 'home/blogsdetail.html')
-        response.status_code = 200
-    except  Blogs.DoesNotExist:
-        response = page_not_found(request)
-    return response
