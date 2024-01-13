@@ -117,9 +117,7 @@ JAZZMIN_SETTINGS = {
         {"model": "auth.user"}
     ],
 
-    #############
-    # Side Menu #
-    #############
+    
 
     # Whether to display the side menu
     "show_sidebar": True,
