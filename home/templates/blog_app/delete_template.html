@@ -1,0 +1,39 @@
+{% extends 'home/base.html' %}
+{% block content %}
+{% load static %}
+<!--Page Header-->
+<section id="main-banner-page" class="position-relative page-header blog-header parallax section-nav-smooth">
+   <div class="overlay overlay-dark opacity-8 z-index-1"></div>
+   <div class="container">
+     <div class="row">
+       <div class="col-lg-6 offset-lg-3">
+         <div class="page-titles whitecolor text-center padding_top padding_bottom">
+           <h2 class="font-light">Blogs</h2>
+         </div>
+       </div>
+     </div>
+     <div class="gradient-bg title-wrap bottom25">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 whitecolor">
+         <h3 class="float-left">Blog</h3>
+       </div>
+      </div>
+     </div>
+   </div>
+</section>
+<!--Page Header ends -->
+<!-- Our Blogs -->  
+<section id="our-blog" class="bglight padding">
+    <div class="container">
+       <div id="blog-measonry" class="cbp top25">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <p>Are you sure, you want to delete "{{ object }}"?</p>
+            <a href="{% url 'blogs' %}">Go Back</a>
+            <input type="submit" value="Confirm">
+        </form>
+       </div>
+    </div>
+</section>
+<!--Our Blogs Ends-->
+{% endblock %}
