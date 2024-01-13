@@ -42,7 +42,6 @@
                   </ul>
                   <p class="bottom35">{{ blog.text | safe | truncatewords:10 }}</p>
                   <a href="{% url 'blog' blog.id %}" class="button gradient-btn">Read more</a>
-                  <a href="{% url 'delete-blog' blog.id %}" class="button gradient-btn">Delete</a>
                </div>
             </div>
          </div>
