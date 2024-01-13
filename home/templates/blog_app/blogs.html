@@ -50,13 +50,30 @@
       <div class="row">   
          <div class="col-sm-12">
             <!--Pagination-->
-            <ul class="pagination justify-content-center top50">
+            <!--<ul class="pagination justify-content-center top50">
                <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
                <li class="page-item active"><a class="page-link" href="#">1</a></li>
                <li class="page-item"><a class="page-link" href="#">2</a></li>
                <li class="page-item"><a class="page-link" href="#">3</a></li>
                <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
-            </ul>
+            </ul>-->
+            <div class="pagination">
+               <span class="step-links">
+               {% if blogs.has_previous %}
+               <a href="?page=1">&laquo; first</a>
+               <a href="?page={{ blogs.previous_page_number }}">previous</a>
+               {% endif %}
+               
+               <span class="current">
+               Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}.
+               </span>
+               
+               {% if blogs.has_next %}
+               <a href="?page={{ blogs.next_page_number }}">next</a>
+               <a href="?page={{ blogs.paginator.num_pages }}">last &raquo;</a>
+               {% endif %}
+               </span>
+               </div>
          </div>
       </div>
    </div>
