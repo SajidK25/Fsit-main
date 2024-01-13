@@ -24,4 +24,5 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('blog_app/', include('blog_app.urls')),
     path('', RedirectView.as_view(url='home/')),
+    path('', include('accounts.urls')),
 ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
