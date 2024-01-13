@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Blog
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -19,3 +19,13 @@ def blogs(request):
 def blog(request, pk):
     blog = get_object_or_404(Blog, pk=pk)
     return render(request, 'blog_app/single-blog.html', {'blog': blog})
+
+def deleteBlog(request, pk):
+    blog = Blog.objects.get(id=pk)
+    if request.method == 'POST':
+        blog.delete()
+        return redirect('blogs')
+    context = {
+        'object': blog
+    }
+    return render(request, 'blog_app/delete_template.html', context)
