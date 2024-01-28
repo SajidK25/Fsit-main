@@ -78,7 +78,7 @@ services:
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
       - ./static:/code/static
-      - ./Fsit-main/mediafiles:/code/mediafiles
+      - ./Fsit-main/mediafiles:/code/Fsit-main/mediafiles
     depends_on:
       - web
     networks:
