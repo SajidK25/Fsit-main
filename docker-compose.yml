@@ -78,7 +78,7 @@ services:
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
       - ./static:/code/static
-      - ./mediafiles:/code/mediafiles
+      - ./mediafiles:/mediafiles
     depends_on:
       - web
     networks:
