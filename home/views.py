@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
-from home.models import BusinessToNext, About, Concept, NeedHelp, Plan, Design, Build, QualityAssurance, Delivery, Careers, Services, Servicesdetail
+from home.models import BusinessToNext, About, Concept, NeedHelp, Plan, Design, Build, QualityAssurance, Delivery, Careers, Services, Servicesdetail, Privacy, Termsnconditions
 
 def page_not_found(request):
     response = render(request, 'home/404.html')
@@ -59,7 +59,7 @@ def servicesdetail(request, pk):
         need_help = NeedHelp.objects.last()
         context = {
             'service': service,
-            'need_help': need_help
+            'need_help': need_help,
         }
         response = render(request, 'home/servicesdetail.html', context=context)
         response.status_code = 200
@@ -72,6 +72,19 @@ def servicesdetail(request, pk):
 def contact(request):
     return render(request, 'home/contact.html')
 
+def privacy(request):
+    privacy = Privacy.objects.last()
+    context = {
+        'privacy': privacy,
+    }
+    return render(request, 'home/privacy.html', context=context)
+
+def termsnconditions(request):
+    termsnconditions = Termsnconditions.objects.last()
+    context = {
+        'termsnconditions': termsnconditions,
+    }
+    return render(request, 'home/termsnconditions.html', context=context)
 
 def team(request):
     return render(request, 'home/team.html')
