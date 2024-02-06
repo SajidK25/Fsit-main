@@ -60,7 +60,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "FSIT SERVICES",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    #"site_logo": "books/img/logo.png",
+    "site_logo": "images/fsitlogo.png",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
     "login_logo": None,
@@ -75,7 +75,7 @@ JAZZMIN_SETTINGS = {
     "site_icon": None,
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to the library",
+    "welcome_sign": "Welcome to FSIT SERVICES LLC Admin Site",
 
     # Copyright on the footer
     "copyright": "Acme Library Ltd",
