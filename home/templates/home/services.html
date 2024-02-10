@@ -53,7 +53,7 @@
                     </div>
                     <div class="services-content brand text-center text-md-left" style=>
                         <h3 class="bottom10 darkcolor"><a href="{% url 'servicesdetail' service.pk %}">{{service.title}}</a></h3>
-                        <p class="bottom15">{{service.text|slice:"0:100"|safe}}
+                        <p class="bottom15">{{service.text|slice:"0:100"|truncatewords:5|safe}}
                         </p>
                         <a href="{% url 'servicesdetail' service.pk %}" class="button-readmore">Learn More</a>
                     </div>
