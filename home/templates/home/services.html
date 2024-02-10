@@ -42,7 +42,7 @@
                 <div class="services-main">
                     <div class="image bottom10">
                         {%if service.image %}
-                        <div class="image"><img alt="" src="{{service.image.url|safe}}" /></div>
+                        <div class="image"><img alt="" src="{{service.image.url}}" /></div>
 
                         {%elif not service.image%}
                         <div class="image"><img alt="" src="../../static/images/service-6.jpg" /></div>
