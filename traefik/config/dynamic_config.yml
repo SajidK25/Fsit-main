@@ -33,7 +33,7 @@ http:
         stsSeconds: 63072000                              # Set the max-age of the Strict-Transport-Security header (63072000 = 2 years)
     wwwtohttps:
       redirectregex:
-        regex: "^https?://www\\.(.+)" 
+        regex: "^https?://(?:www\.)?(.+)"                 # ^https?://www\\.(.+) 
         replacement: "https://$${1}"
         permanent: true
     # Serve the error pages when the status is included inside the following ranges
