@@ -13,6 +13,7 @@ certificatesResolvers:
       email: "sysadmin@fsitservices.com"  # Email address used for registration
       storage: "/etc/traefik/acme/acme.json"    # [Attention] File or key used for certificates storage
       tlsChallenge: {}
+      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
 
 entryPoints:
   http:
