@@ -72,6 +72,7 @@ jobs:
             script: |
                 cd Fsit-main/
                 # git stash
+                export DO_AUTH_TOKEN=${{secrets.DO_AUTH_TOKEN}}
                 git pull origin "${{ steps.extract_branch.outputs.branch }}" 
                 if [[ "${{ steps.extract_branch.outputs.branch }}" == "dev" ]]; then
                     COMPOSE_FILE=docker-compose.dev.yml
