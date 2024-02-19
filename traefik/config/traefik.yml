@@ -15,6 +15,20 @@ certificatesResolvers:
       tlsChallenge: {}
       # caServer: "https://acme-v02.api.letsencrypt.org/directory"
       # caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+  production:
+    acme:
+      email: digitalocean@fsitservices.com
+      storage: /etc/traefik/acme/acme.json
+      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      # -- (Optional) Remove this section, when using DNS Challenge
+  #     # httpChallenge:
+  #     #   entryPoint: web
+  #     # -- (Optional) Configure DNS Challenge
+      dnsChallenge:
+        provider: digitalocean
+        resolvers:
+          - "1.1.1.1:53"
+          - "8.8.8.8:53"
 
 entryPoints:
   http:
