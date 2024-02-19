@@ -8,7 +8,7 @@ networks:
 services:
   traefik:
     environment:
-      - "DO_AUTH_TOKEN=dop_v1_a165986298de5bc363c2c3e2241f47aa3ed7a100e5837faaea2e59e450250336"
+      - "DO_AUTH_TOKEN=${DO_AUTH_TOKEN}"
     labels:
       traefik.docker.network: "traefik-net"
       traefik.enable: "true"
