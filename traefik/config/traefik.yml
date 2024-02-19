@@ -19,7 +19,7 @@ certificatesResolvers:
     acme:
       email: digitalocean@fsitservices.com
       storage: /etc/traefik/acme/acme.json
-      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      caServer: "https://acme-v02.api.letsencrypt.org/directory"
       # -- (Optional) Remove this section, when using DNS Challenge
   #     # httpChallenge:
   #     #   entryPoint: web
