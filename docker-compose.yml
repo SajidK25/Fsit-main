@@ -7,6 +7,8 @@ networks:
   
 services:
   traefik:
+    environment:
+      - "DO_AUTH_TOKEN=dop_v1_a165986298de5bc363c2c3e2241f47aa3ed7a100e5837faaea2e59e450250336"
     labels:
       traefik.docker.network: "traefik-net"
       traefik.enable: "true"
@@ -14,7 +16,7 @@ services:
       traefik.http.routers.traefik.middlewares: "traefikAuth@file,default@file"
       traefik.http.routers.traefik.rule: "Host(`traefik.fsitservices.com`)" # [Attention]
       traefik.http.routers.traefik.service: "api@internal"
-      traefik.http.routers.traefik.tls.certresolver: "letsEncrypt"
+      traefik.http.routers.traefik.tls.certresolver: "production"
       traefik.http.routers.traefik.tls.options: "modern@file"
       traefik.http.routers.traefik.tls: "true"
       traefik.http.services.traefik.loadbalancer.server.port: 8080
@@ -68,7 +70,7 @@ services:
       traefik.http.routers.nginx.entrypoints: "https"
       traefik.http.routers.nginx.middlewares: "default@file"
       traefik.http.routers.nginx.rule: "Host(`fsitservices.com`) || Host(`www.fsitservices.com`)"
-      traefik.http.routers.nginx.tls.certresolver: "letsEncrypt"
+      traefik.http.routers.nginx.tls.certresolver: "production"
       traefik.http.routers.nginx.tls.options: "modern@file"
       traefik.http.routers.nginx.tls: "true"
       traefik.http.services.nginx.loadbalancer.server.port: 80
