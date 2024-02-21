@@ -27,7 +27,7 @@ SECRET_KEY = '8*w6(38ae+lbkdgr4tr@1byn7uim=wxl*wah9q5n3b8n!kv$2!'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['django-app','67.205.158.29', 'www.fsitservices.com', 'fsitservices.com','127.0.0.1']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['www.fsitservices.com', 'fsitservices.com','67.205.136.155','127.0.0.1']
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
