@@ -14,7 +14,7 @@ http:
       chain:
         middlewares:
           - default-security-headers
-          # - wwwtohttps
+          - wwwtohttps
           - error-pages
           - gzip
 
@@ -33,8 +33,8 @@ http:
         stsSeconds: 63072000                              # Set the max-age of the Strict-Transport-Security header (63072000 = 2 years)
     wwwtohttps:
       redirectregex:
-        regex: "^https?://www\\.(.+)" 
-        replacement: "https://$${1}"
+        regex: "^https://(?:www\.)?(.+)" 
+        replacement: "https://${1}"
         permanent: true
     
     # wwwtohttps:
