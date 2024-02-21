@@ -14,7 +14,7 @@ http:
       chain:
         middlewares:
           - default-security-headers
-          - wwwtohttps
+          # - wwwtohttps
           - error-pages
           - gzip
 
