@@ -202,3 +202,31 @@ class NeedHelp(models.Model):
     
     def __str__(self):
         return str(self.phoneNumber)
+    
+class Privacy(models.Model):
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, help_text='Title')
+    text = models.TextField()
+    createDate = models.DateTimeField(default=timezone.now())
+    publishedDate = models.DateTimeField(default=timezone.now())
+
+    def publish(self):
+        self.publishedDate = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return str(self.title)
+    
+class Termsnconditions(models.Model):
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, help_text='Title')
+    text = models.TextField()
+    createDate = models.DateTimeField(default=timezone.now())
+    publishedDate = models.DateTimeField(default=timezone.now())
+
+    def publish(self):
+        self.publishedDate = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return str(self.title)

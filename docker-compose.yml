@@ -7,16 +7,18 @@ networks:
   
 services:
   traefik:
+    environment:
+      - "DO_AUTH_TOKEN=${DO_AUTH_TOKEN}"
     labels:
       traefik.docker.network: "traefik-net"
       traefik.enable: "true"
       traefik.http.routers.traefik.entrypoints: "https"
       traefik.http.routers.traefik.middlewares: "traefikAuth@file,default@file"
-      traefik.http.routers.traefik.rule: "Host(`${TRAEFIK_SUBDOMAIN}.${TRAEFIK_DOMAIN}`)" # [Attention]
+      traefik.http.routers.traefik.rule: "Host(`traefik.fsitservices.com`)" # [Attention]
       traefik.http.routers.traefik.service: "api@internal"
-      traefik.http.routers.traefik.tls.certresolver: "letsEncrypt"
-      traefik.http.routers.traefik.tls.options: "modern@file"
-      traefik.http.routers.traefik.tls: "true"
+      # traefik.http.routers.traefik.tls.certresolver: "production"
+      # traefik.http.routers.traefik.tls.options: "modern@file"
+      # traefik.http.routers.traefik.tls: "true"
       traefik.http.services.traefik.loadbalancer.server.port: 8080
       traefik.http.services.traefik.loadbalancer.sticky.cookie.httpOnly: "true"
       traefik.http.services.traefik.loadbalancer.sticky.cookie.secure: "true"
@@ -29,6 +31,7 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 8080:8080
       # To be able to listen on port 80 (http)
       # - mode: host
       #   published: 80
@@ -67,10 +70,10 @@ services:
       traefik.enable: "true"
       traefik.http.routers.nginx.entrypoints: "https"
       traefik.http.routers.nginx.middlewares: "default@file"
-      traefik.http.routers.nginx.rule: "Host(`${PROJECT_DOMAIN}`) || Host(`${PROJECT_SUBDOMAIN}.${PROJECT_DOMAIN}`)"
-      traefik.http.routers.nginx.tls.certresolver: "letsEncrypt"
-      traefik.http.routers.nginx.tls.options: "modern@file"
-      traefik.http.routers.nginx.tls: "true"
+      traefik.http.routers.nginx.rule: "Host(`fsitservices.com`) || Host(`www.fsitservices.com`)"
+      # traefik.http.routers.nginx.tls.certresolver: "production"
+      # traefik.http.routers.nginx.tls.options: "modern@file"
+      # traefik.http.routers.nginx.tls: "true"
       traefik.http.services.nginx.loadbalancer.server.port: 80
       traefik.http.services.nginx.loadbalancer.sticky.cookie.httpOnly: "true"
       traefik.http.services.nginx.loadbalancer.sticky.cookie.secure: "true"
@@ -84,7 +87,20 @@ services:
     networks:
       - traefik-net
       # - default
-
+  # whoami:
+  #   image: "traefik/whoami"
+  #   container_name: "simple-service"
+  #   labels:
+  #     traefik.docker.network: "traefik-net"
+  #     traefik.enable: "true"
+  #     traefik.http.routers.whoami.entrypoints: "https"
+  #     traefik.http.routers.whoami.middlewares: "default@file"
+  #     traefik.http.routers.whoami.rule: "Host(`whoami.fsitservices.com`, `www.whoami.fsitservices.com`)"
+  #     traefik.http.routers.whoami.tls.certresolver: "letsEncrypt"
+  #     traefik.http.routers.whoami.tls.options: "modern@file"
+  #     traefik.http.routers.whoami.tls: "true"
+  #   networks:
+  #     - traefik-net
   web:
     # build:
     #   context: .

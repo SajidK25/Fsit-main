@@ -29,7 +29,7 @@
 <section id="our-services" class="padding bglight">
     <div class="container">
         <div class="col-md-12 text-center heading_space wow fadeIn" data-wow-delay="300ms">
-            <h2 class="heading bottom30 darkcolor font-light2"><span class="font-weight-light">Our Service</span>
+            <h2 class="heading bottom30 darkcolor font-light2"><span class="font-weight-light">Our Services</span>
                 <span class="divider-center"></span>
             </h2>
             <div class="col-md-8 offset-md-2">
@@ -53,7 +53,7 @@
                     </div>
                     <div class="services-content brand text-center text-md-left" style=>
                         <h3 class="bottom10 darkcolor"><a href="{% url 'servicesdetail' service.pk %}">{{service.title}}</a></h3>
-                        <p class="bottom15">{{service.text | safe | truncatewords:5 }}
+                        <p class="bottom15">{{service.text|slice:"0:100"|truncatewords:5|safe}}
                         </p>
                         <a href="{% url 'servicesdetail' service.pk %}" class="button-readmore">Learn More</a>
                     </div>
