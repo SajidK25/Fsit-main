@@ -31,13 +31,6 @@ http:
         stsIncludeSubdomains: true                        # Add includeSubdomains to the Strict-Transport-Security header
         stsPreload: true                                  # Add preload flag appended to the Strict-Transport-Security header
         stsSeconds: 63072000                              # Set the max-age of the Strict-Transport-Security header (63072000 = 2 years)
-<<<<<<< HEAD
-    wwwtohttps:
-      redirectregex:
-        regex: "^https?://(?:www\.)?(.+)"                 # ^https?://www\\.(.+) 
-        replacement: "https://$${1}"
-        permanent: true
-=======
     # wwwtohttps:
     #   redirectregex:
     #     regex: "^https://(?:www\.)?(.+)" 
@@ -49,7 +42,6 @@ http:
     #     regex: "^https?://www.fsitservices.com/(.*)" 
     #     replacement: "https://fsitservices.com/$${1}"
     #     permanent: true
->>>>>>> 1cf32d41d13c72d165964ccbdba6bb8bb8ed9b5e
     # Serve the error pages when the status is included inside the following ranges
     # Use with traefik.http.routers.myRouter.middlewares: "error-pages@file"
     error-pages:
