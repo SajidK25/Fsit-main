@@ -1,11 +1,12 @@
 version: "3"
-  
+
 services:
   web-dev:
     container_name: fsit-web-dev
     image: tech99/fsit-web-dev
     restart: on-failure
-    command: bash -c "python manage.py runserver 0.0.0.0:8000 --settings=fsit.settings_local"
+    command: bash -c "python manage.py makemigrations home --noinput &&
+      python manage.py migrate --noinput &&
+      python manage.py runserver 0.0.0.0:8000 --settings=fsit.settings_local"
     ports:
       - "8888:8000"
-    
