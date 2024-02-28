@@ -26,7 +26,7 @@ SECRET_KEY = '8*w6(38ae+lbkdgr4tr@1byn7uim=wxl*wah9q5n3b8n!kv$2!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['67.205.158.29', 'www.fsitservices.com', 'fsitservices.com']
+ALLOWED_HOSTS = ['67.205.158.29', 'www.fsitservices.com', 'fsitservices.com', '127.0.0.1']
 # ALLOWED_HOSTS = ['*']
 
 ADMINS = (
