@@ -14,7 +14,6 @@ http:
       chain:
         middlewares:
           - default-security-headers
-          #- wwwtohttps
           - error-pages
           - gzip
 
@@ -32,17 +31,6 @@ http:
         stsPreload: true                                  # Add preload flag appended to the Strict-Transport-Security header
         stsSeconds: 63072000                              # Set the max-age of the Strict-Transport-Security header (63072000 = 2 years)
 
-    # wwwtohttps:
-    #   redirectregex:
-    #     regex: "^https://(?:www\.)?(.+)" 
-    #     replacement: "https://${1}"
-    #     permanent: true
-    
-    # wwwtohttps:
-    #   redirectregex:
-    #     regex: "^https?://www.fsitservices.com/(.*)" 
-    #     replacement: "https://fsitservices.com/$${1}"
-    #     permanent: true
     # Serve the error pages when the status is included inside the following ranges
     # Use with traefik.http.routers.myRouter.middlewares: "error-pages@file"
     error-pages:
